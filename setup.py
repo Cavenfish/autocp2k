@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="autogamess",
-    version="1.0.32",
-    author="Brian C. Ferrari",
-    author_email="brianf1996@knights.ucf.edu",
-    description="This is a python module for automating Raman calculations using GAMESS(us).",
+    name="autocp2k",
+    version="0.0.1",
+    author="Brian C. Ferrari & ...",
+    author_email="Brian.Ferrari@ucf.edu & ...",
+    description="This is a python module for automating CP2K calculations.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Cavenfish/autogamess",
+    url="https://github.com/Cavenfish/autocp2k",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
