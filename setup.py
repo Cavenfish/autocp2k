@@ -14,7 +14,7 @@ setuptools.setup(
     url="https://github.com/Cavenfish/autocp2k",
     packages=setuptools.find_packages(),
     install_requires=["numpy", "scipy", "pandas", "basis_set_exchange", "PeriodicElements",
-                      "openpyxl", "matplotlib", "xlrd", "xlsxwriter"],
+                      "openpyxl", "matplotlib", "xlrd", "xlsxwriter", "ase"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
