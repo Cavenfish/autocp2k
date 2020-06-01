@@ -68,17 +68,32 @@ def make_fcc_xyz(molecule, cell_size, unit_cell, save_name='./cell.xyz'):
     cell = Cell(mol, cell_size)
 
     #Populate cell
-    for x in [0.5, 1]:
+    for x in range(2):
         xt =  x * unit_cell[0]
-        for y in [0.5, 1]:
+        for y in range(2):
             yt =  y * unit_cell[1]
-            for z in [0.5, 1]:
+            for z in range(2):
                 zt =  z * unit_cell[2]
 
                 new_mol = deepcopy(mol)
 
                 new_mol[pos] = [(i[0]+xt, i[1]+yt, i[2]+zt) for i in mol[pos]]
                 cell.add_molecule(new_mol)
+
+                if (z == 0) or (z == 1):
+                    if (x != 0) and (y != 0):
+                        new_mol[pos] = [(i[0]+xt/2, i[1]+yt/2, i[2]+zt) for i in mol[pos]]
+                        cell.add_molecule(new_mol)
+
+                if (x == 0) or (x == 1):
+                    if (z != 0) and (y != 0):
+                        new_mol[pos] = [(i[0]+xt, i[1]+yt/2, i[2]+zt/2) for i in mol[pos]]
+                    cell.add_molecule(new_mol)
+
+                if (y == 0) or (y == 1):
+                    if (x != 0) and (z != 0):
+                        new_mol[pos] = [(i[0]+xt/2, i[1]+yt, i[2]+zt/2) for i in mol[pos]]
+                        cell.add_molecule(new_mol)
 
     print(cell.molCount)
     cell.make_xzy(save_name)

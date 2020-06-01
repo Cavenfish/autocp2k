@@ -11,5 +11,6 @@ from .config        import *
     #Functions
 from .make_xyz      import make_random_xyz
 from .make_xyz      import make_repeated_xyz
+from .make_xyz      import make_fcc_xyz
 
     #Multi-function Modules
