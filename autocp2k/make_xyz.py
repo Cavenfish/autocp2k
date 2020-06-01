@@ -41,29 +41,18 @@ def make_repeated_xyz(molecule, cell_size, tup, save_name='./cell.xyz'):
     cell = Cell(mol, cell_size)
 
     #Populate cell
-    for j in range(tup[0] + 1):
-        t = 0.75 * j * cell_size[0] / tup[0]
+    for x in range(tup[0]):
+        xt = 0.75 * x * cell_size[0] / tup[0]
+        for y in range(tup[1]):
+            yt = 0.75 * y * cell_size[1] / tup[1]
+            for z in range(tup[2]):
+                zt = 0.75 * z * cell_size[2] / tup[2]
 
-        new_mol = mol.copy()
+                new_mol = deepcopy(mol)
 
-        new_mol[pos] = [(i[0]+t, i[1], i[2]) for i in mol[pos]]
-        cell.add_molecule(new_mol)
+                new_mol[pos] = [(i[0]+xt, i[1]+yt, i[2]+zt) for i in mol[pos]]
+                cell.add_molecule(new_mol)
 
-    for j in range(tup[1] + 1):
-        t = 0.75 * j * cell_size[1] / tup[1]
-
-        new_mol = mol.copy()
-
-        new_mol[pos] = [(i[0], i[1]+t, i[2]) for i in mol[pos]]
-        cell.add_molecule(new_mol)
-
-    for j in range(tup[2] + 1):
-        t = 0.75 * j * cell_size[2] / tup[2]
-
-        new_mol = mol.copy()
-
-        new_mol[pos] = [(i[0], i[1], i[2]+t) for i in mol[pos]]
-        cell.add_molecule(new_mol)
-
+    print(cell.molCount)
     cell.make_xzy(save_name)
     return

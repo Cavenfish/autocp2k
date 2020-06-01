@@ -3,6 +3,7 @@ import sys
 import numpy  as np
 import pandas as pd
 import basis_set_exchange as bse
+from copy import deepcopy
 
 #Dictionary key names
 atm      = 'Atoms'
@@ -21,12 +22,12 @@ error_tail   = "\n*****Ponder this, then return to me*****\n"
 #Class for storing molecules in a cell
 class Cell:
     'The cell with all molecules to be studied'
-    #molCount = 0
+    molCount = 0
 
     def __init__(self, molecule, cell_size):
-        self.mols      = molecule.copy()
+        self.mols      = deepcopy(molecule)
         self.size      = cell_size
-        self.molCount  = 1
+        self.molCount += 1
 
     def add_molecule(self, molecule):
         atm      = 'Atoms'
