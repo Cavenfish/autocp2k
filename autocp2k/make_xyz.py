@@ -2,6 +2,7 @@ from .config import *
 from ase.build import molecule
 from ase import Atoms
 from ase.io import write
+from scipy.spatial.transform import Rotation as R
 
 #This one I personally made
 def make_random_xyz(molecule, cell_size, num_mols, save_name='./cell.xyz'):
@@ -16,12 +17,13 @@ def make_random_xyz(molecule, cell_size, num_mols, save_name='./cell.xyz'):
 
     #Populate cell
     while cell.molCount < num_mols:
+        r            = R.random()
         translation  = np.random.rand(3) * cell_size
         new_mol      = mol.copy()
 
         new_pos      = mol[pos] + translation
 
-        new_mol[pos] = list(map(tuple, new_pos))
+        new_mol[pos] = list(map(tuple, r.apply(new_pos)))
 
         print(cell.molCount)
         cell.add_molecule(new_mol)

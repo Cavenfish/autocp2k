@@ -33,7 +33,7 @@ class Cell:
         atm      = 'Atoms'
         pos      = 'Positions'
         #Check if any atoms overlap
-        if any(x in self.mols[pos] for x in molecule[pos]):
+        if check_distance(self.mols[pos], molecule[pos]):
             return
 
         #Check if molecule in cell bounds
@@ -74,3 +74,13 @@ def read_molecule(molecule):
         mol[pos].append(xyz)
 
     return mol
+
+def check_distance(atoms, mol):
+    for i in range(len(mol)):
+        for j in range(len(atoms)):
+            x1,y1,z1 = mol[i][0],mol[i][1],mol[i][2]
+            x2,y2,z2 = atoms[j][0], atoms[j][1], atoms[j][2]
+            d = np.sqrt((x1-x2)**2 + (y1-y2)**2 + (z1-z2)**2)
+            if d < 2.00:
+                return True
+    return False
