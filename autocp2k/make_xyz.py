@@ -25,7 +25,6 @@ def make_random_xyz(molecule, cell_size, num_mols, save_name='./cell.xyz'):
 
         new_mol[pos] = list(map(tuple, r.apply(new_pos)))
 
-        print(cell.molCount)
         cell.add_molecule(new_mol)
 
     cell.make_xzy(save_name)
