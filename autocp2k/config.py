@@ -37,7 +37,11 @@ class Cell:
             return
 
         #Check if molecule in cell bounds
-        if any(i >= j for x in molecule[pos] for i,j in zip(x, self.size)):
+        if any(i >= j/2 for x in molecule[pos] for i,j in zip(x, self.size)):
+            return
+
+        #Check if molecule in cell bounds
+        if any(i <= -j/2 for x in molecule[pos] for i,j in zip(x, self.size)):
             return
 
         self.mols[atm] += molecule[atm]
