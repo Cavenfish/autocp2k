@@ -19,7 +19,7 @@ def make_random_xyz(molecule, cell_size, num_mols, save_name='./cell.xyz'):
     while cell.molCount < num_mols:
         r            = R.random()
         translation  = np.random.rand(3) * cell_size
-        new_mol      = mol.copy()
+        new_mol      = deepcopy(mol)
 
         new_pos      = mol[pos] + translation
 
